@@ -1,87 +1,158 @@
+import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { CalendarDays, MapPin } from 'lucide-react'
+import Image from 'next/image'
+import { HeroHeader } from './header'
+import { InfiniteSlider } from '@/components/ui/infinite-slider'
+import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 
-export function HeroSection() {
-  return (
-    <section className="relative overflow-hidden">
-      {/* Gradient background effects */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-foreground/5 to-transparent blur-3xl" />
-        <div className="absolute -bottom-1/2 left-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-t from-foreground/3 to-transparent blur-3xl" />
-      </div>
+export default function HeroSection() {
+    return (
+        <>
+            <HeroHeader />
+            <main className="overflow-x-hidden">
+                <section>
+                    <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
+                        <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:block">
+                            <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left">
+                                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">Ship 10x Faster with NS</h1>
+                                <p className="mt-8 max-w-2xl text-pretty text-lg">Highly customizable components for building modern websites and applications that look and feel the way you mean it.</p>
 
-      <div className="relative pb-24 pt-32 md:pb-32 md:pt-40 lg:pb-40 lg:pt-48">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            {/* Event badge */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground/50 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
-              </span>
-              <span className="font-mono">Prompt to Production</span>
-            </div>
+                                <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        className="px-5 text-base">
+                                        <Link href="#link">
+                                            <span className="text-nowrap">Start Building</span>
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        key={2}
+                                        asChild
+                                        size="lg"
+                                        variant="ghost"
+                                        className="px-5 text-base">
+                                        <Link href="#link">
+                                            <span className="text-nowrap">Request a demo</span>
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </div>
+                            <Image
+                                className="-z-10 order-first ml-auto h-56 w-full object-cover invert sm:h-96 lg:absolute lg:inset-0 lg:-right-20 lg:-top-96 lg:order-last lg:h-max lg:w-2/3 lg:object-contain dark:mix-blend-lighten dark:invert-0"
+                                src="https://ik.imagekit.io/lrigu76hy/tailark/abstract-bg.jpg?updatedAt=1745733473768"
+                                alt="Abstract Object"
+                                height="4000"
+                                width="3000"
+                            />
+                        </div>
+                    </div>
+                </section>
+                <section className="bg-background pb-16 md:pb-32">
+                    <div className="group relative m-auto max-w-6xl px-6">
+                        <div className="flex flex-col items-center md:flex-row">
+                            <div className="md:max-w-44 md:border-r md:pr-6">
+                                <p className="text-end text-sm">Powering the best teams</p>
+                            </div>
+                            <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                                <InfiniteSlider
+                                    speedOnHover={20}
+                                    speed={40}
+                                    gap={112}>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-5 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                                            alt="Nvidia Logo"
+                                            height="20"
+                                            width="auto"
+                                        />
+                                    </div>
 
-            {/* Main heading */}
-            <h1 className="text-balance text-5xl font-medium tracking-tight md:text-6xl lg:text-7xl">
-              v0 IRL
-            </h1>
-            
-            <p className="mx-auto mt-6 max-w-xl text-pretty text-lg text-muted-foreground md:text-xl">
-              v0 is getting ready to launch its biggest product update yet. 
-              We&apos;re celebrating with v0 IRLs around the world.
-            </p>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-4 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/column.svg"
+                                            alt="Column Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-4 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/github.svg"
+                                            alt="GitHub Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-5 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/nike.svg"
+                                            alt="Nike Logo"
+                                            height="20"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-5 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
+                                            alt="Lemon Squeezy Logo"
+                                            height="20"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-4 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/laravel.svg"
+                                            alt="Laravel Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-7 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/lilly.svg"
+                                            alt="Lilly Logo"
+                                            height="28"
+                                            width="auto"
+                                        />
+                                    </div>
 
-            {/* Event details */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground sm:flex-row sm:gap-8">
-              <div className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4" />
-                <span className="font-mono">Thursday, February 5th, 2026</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span className="font-mono">NYC</span>
-              </div>
-            </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-6 w-fit dark:invert"
+                                            src="https://html.tailus.io/blocks/customers/openai.svg"
+                                            alt="OpenAI Logo"
+                                            height="24"
+                                            width="auto"
+                                        />
+                                    </div>
+                                </InfiniteSlider>
 
-            {/* Tagline */}
-            <p className="mt-10 text-balance text-lg font-medium text-foreground/80">
-              One week. Global hackathons. Real apps, real work.
-            </p>
-
-            {/* CTA buttons */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="bg-foreground px-8 text-base text-background hover:bg-foreground/90"
-              >
-                <Link href="https://v0.app/irl">
-                  <span className="text-nowrap">Register Now</span>
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-border/50 px-8 text-base hover:bg-secondary/50 bg-transparent"
-              >
-                <Link
-                  href="https://meetup-sdk.vercel.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="text-nowrap">Host an Event</span>
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom gradient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-    </section>
-  )
+                                <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
+                                <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
+                                <ProgressiveBlur
+                                    className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                                    direction="left"
+                                    blurIntensity={1}
+                                />
+                                <ProgressiveBlur
+                                    className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                                    direction="right"
+                                    blurIntensity={1}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </>
+    )
 }

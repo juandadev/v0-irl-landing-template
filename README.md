@@ -1,4 +1,4 @@
-# Untitled Chat
+# v0 IRL Landing Template
 
 *Automatically synced with your [v0.app](https://v0.app) deployments*
 
