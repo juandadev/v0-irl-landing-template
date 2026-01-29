@@ -23,12 +23,66 @@ const cardGLB = '/card.glb';
 
 extend({MeshLineGeometry, MeshLineMaterial});
 
+function useCardTexture(baseTexture: THREE.Texture | null, userName?: string): THREE.Texture | null {
+    const [canvasTexture, setCanvasTexture] = useState<THREE.CanvasTexture | null>(null);
+
+    useEffect(() => {
+        if (!baseTexture?.image) return;
+
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const img = baseTexture.image as HTMLImageElement;
+        canvas.width = img.width || 1024;
+        canvas.height = img.height || 1024;
+
+        // Draw the base texture
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        // Draw the user's name at the bottom if provided
+        if (userName) {
+            const fontSize = Math.floor(canvas.width * 0.06);
+            ctx.font = `bold ${fontSize}px "Geist Mono", monospace`;
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Position at bottom area of the card (adjust these values based on UV layout)
+            const x = canvas.width * 0.5;
+            const y = canvas.height * 0.85;
+
+            // Add subtle text shadow for better readability
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+            ctx.shadowBlur = 4;
+            ctx.shadowOffsetX = 2;
+            ctx.shadowOffsetY = 2;
+
+            ctx.fillText(userName.toUpperCase(), x, y);
+        }
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.flipY = baseTexture.flipY;
+        texture.colorSpace = baseTexture.colorSpace;
+        texture.needsUpdate = true;
+
+        setCanvasTexture(texture);
+
+        return () => {
+            texture.dispose();
+        };
+    }, [baseTexture, userName]);
+
+    return canvasTexture;
+}
+
 interface LanyardProps {
     position?: [number, number, number];
     gravity?: [number, number, number];
     fov?: number;
     transparent?: boolean;
     containerClassName?: string;
+    userName?: string;
 }
 
 export default function Lanyard({
@@ -36,7 +90,8 @@ export default function Lanyard({
                                     gravity = [0, -40, 0],
                                     fov = 20,
                                     transparent = true,
-                                    containerClassName
+                                    containerClassName,
+                                    userName
                                 }: LanyardProps) {
     const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
@@ -57,7 +112,7 @@ export default function Lanyard({
             >
                 <ambientLight intensity={Math.PI}/>
                 <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-                    <Band isMobile={isMobile}/>
+                    <Band isMobile={isMobile} userName={userName}/>
                 </Physics>
                 <Environment blur={0.75}>
                     <Lightformer
@@ -98,9 +153,10 @@ interface BandProps {
     maxSpeed?: number;
     minSpeed?: number;
     isMobile?: boolean;
+    userName?: string;
 }
 
-function Band({maxSpeed = 50, minSpeed = 0, isMobile = false}: BandProps) {
+function Band({maxSpeed = 50, minSpeed = 0, isMobile = false, userName}: BandProps) {
     // Using "any" for refs since the exact types depend on Rapier's internals
     const band = useRef<any>(null);
     const fixed = useRef<any>(null);
@@ -124,6 +180,8 @@ function Band({maxSpeed = 50, minSpeed = 0, isMobile = false}: BandProps) {
 
     const {nodes, materials} = useGLTF(cardGLB) as any;
     const texture = useTexture(typeof lanyard === 'string' ? lanyard : lanyard.src) as THREE.Texture;
+    const baseCardTexture = materials.base?.map as THREE.Texture | null;
+    const customCardTexture = useCardTexture(baseCardTexture, userName);
     const [curve] = useState(
         () =>
             new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
@@ -219,7 +277,7 @@ function Band({maxSpeed = 50, minSpeed = 0, isMobile = false}: BandProps) {
                     >
                         <mesh geometry={nodes.card.geometry}>
                             <meshPhysicalMaterial
-                                map={materials.base.map}
+                                map={customCardTexture || materials.base.map}
                                 map-anisotropy={16}
                                 clearcoat={isMobile ? 0 : 1}
                                 clearcoatRoughness={0.15}

@@ -91,7 +91,8 @@ export default function HeroSection() {
                         </div>
                     </div>
                     <Lanyard position={[0, 0, 20]}
-                             containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen'/>
+                             containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen'
+                             userName="John Doe"/>
                 </div>
             </section>
             <section className="bg-background pb-16 md:pb-32">
