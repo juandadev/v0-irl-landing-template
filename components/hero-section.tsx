@@ -16,7 +16,8 @@ export default function HeroSection() {
     return (
         <main className="overflow-x-hidden">
             <section>
-                <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44 lg:grid lg:grid-cols-2">
+                <div
+                    className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44 lg:grid lg:grid-cols-2 lg:grid-rows-1 grid-cols-1 grid-rows-2">
                     <div className="relative mx-auto flex max-w-xl flex-col px-6 lg:block">
                         <div className="mx-auto max-w-2xl text-center lg:ml-0 lg:text-left">
                             <div className='mt-8 lg:mt-16'>
@@ -89,7 +90,8 @@ export default function HeroSection() {
                             </AnimatedGroup>
                         </div>
                     </div>
-                    <Lanyard position={[0, 0, 20]} containerClassName='absolute top-0 right-0 w-1/2 h-screen'/>
+                    <Lanyard position={[0, 0, 20]}
+                             containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen'/>
                 </div>
             </section>
             <section className="bg-background pb-16 md:pb-32">

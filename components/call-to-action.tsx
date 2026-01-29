@@ -6,7 +6,7 @@ import {transitionVariants} from "@/lib/utils";
 
 export default function CallToAction() {
     return (
-        <section className="py-16">
+        <section className="py-16 mx-2">
             <div className="mx-auto max-w-5xl rounded-3xl border px-6 py-12 md:py-20 lg:py-32">
                 <div className="text-center">
                     <TextEffect
