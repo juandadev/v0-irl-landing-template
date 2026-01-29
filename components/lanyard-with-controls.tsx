@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Lanyard from "@/components/ui/lanyard";
 import { Button } from "@/components/ui/button";
+import CardTemplate, { type CardTemplateRef } from "@/components/card-template";
 
 const MAX_CHARACTERS = 20;
 
@@ -19,14 +20,24 @@ export default function LanyardWithControls({
 }: LanyardWithControlsProps) {
   const [inputValue, setInputValue] = useState(defaultName);
   const [appliedName, setAppliedName] = useState(defaultName);
+  const [cardTextureUrl, setCardTextureUrl] = useState<string | undefined>(undefined);
+  const [textureKey, setTextureKey] = useState(0);
+  const cardTemplateRef = useRef<CardTemplateRef>(null);
 
   const characterCount = inputValue.length;
   const isAtLimit = characterCount >= MAX_CHARACTERS;
   const isNearLimit = characterCount >= MAX_CHARACTERS - 5;
   const hasChanges = inputValue !== appliedName;
 
-  const handleApplyName = () => {
+  const handleTextureReady = useCallback((dataUrl: string) => {
+    setCardTextureUrl(dataUrl);
+    setTextureKey((prev) => prev + 1);
+  }, []);
+
+  const handleApplyName = async () => {
     setAppliedName(inputValue);
+    // Capture the card template as a texture
+    await cardTemplateRef.current?.captureTexture();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +55,18 @@ export default function LanyardWithControls({
 
   return (
     <div className="flex flex-col">
+      {/* Hidden card template for texture generation */}
+      <CardTemplate
+        ref={cardTemplateRef}
+        userName={inputValue}
+        onTextureReady={handleTextureReady}
+      />
+      
       <Lanyard
-        key={appliedName}
+        key={textureKey}
         position={position}
         containerClassName={containerClassName}
-        userName={appliedName}
+        cardTextureUrl={cardTextureUrl}
       />
       <div className="px-6 pb-8 lg:absolute lg:bottom-8 lg:right-6 lg:w-auto lg:px-0">
         <div className="mx-auto max-w-md lg:mx-0 lg:ml-auto">
