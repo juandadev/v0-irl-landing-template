@@ -40,7 +40,29 @@ export default function LanyardWithControls({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const dataUrl = canvas.toDataURL("image/png");
+    // Crop settings - adjust these to change the export area
+    const cropScale = 0.5; // Crop to 50% of the canvas (centered)
+    const cropWidth = canvas.width * cropScale;
+    const cropHeight = canvas.height * cropScale;
+    const cropX = (canvas.width - cropWidth) / 2;
+    const cropY = (canvas.height - cropHeight) / 2;
+
+    // Create a new canvas for the cropped image
+    const croppedCanvas = document.createElement("canvas");
+    croppedCanvas.width = cropWidth;
+    croppedCanvas.height = cropHeight;
+    const ctx = croppedCanvas.getContext("2d");
+    
+    if (!ctx) return;
+
+    // Draw the cropped portion
+    ctx.drawImage(
+      canvas,
+      cropX, cropY, cropWidth, cropHeight, // Source rectangle
+      0, 0, cropWidth, cropHeight // Destination rectangle
+    );
+
+    const dataUrl = croppedCanvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.download = `lanyard-${appliedName || "card"}.png`;
     link.href = dataUrl;
