@@ -22,7 +22,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => setBaseImage(img);
-      img.src = "/card-base.png";
+      img.src = "/card-base-dark.png";
     }, []);
 
     const captureTexture = async () => {
@@ -49,8 +49,8 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
       
-      const textX = (CANVAS_SIZE / 2) - 50;
-      const textY = CANVAS_SIZE - 440;
+      const textX = (CANVAS_SIZE / 2) - 55;
+      const textY = CANVAS_SIZE - 400;
       ctx.fillText(displayName.toUpperCase(), textX, textY);
 
       const dataUrl = canvas.toDataURL("image/png");
