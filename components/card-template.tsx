@@ -2,8 +2,11 @@
 
 import { forwardRef, useImperativeHandle, useEffect, useState } from "react";
 
+export type CardVariant = "dark" | "light";
+
 interface CardTemplateProps {
   userName: string;
+  variant: CardVariant;
   onTextureReady: (dataUrl: string) => void;
 }
 
@@ -15,16 +18,19 @@ export interface CardTemplateRef {
 const CANVAS_SIZE = 1376;
 
 const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
-  ({ userName, onTextureReady }, ref) => {
+  ({ userName, variant, onTextureReady }, ref) => {
     const [baseImage, setBaseImage] = useState<HTMLImageElement | null>(null);
+
+    const imageSrc = variant === "dark" ? "/card-base-dark.png" : "/card-base-light.png";
+    const textColor = variant === "dark" ? "#ffffff" : "#000000";
 
     // Preload the base card image
     useEffect(() => {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => setBaseImage(img);
-      img.src = "/card-base-dark.png";
-    }, []);
+      img.src = imageSrc;
+    }, [imageSrc]);
 
     const captureTexture = async () => {
       const canvas = document.createElement("canvas");
@@ -45,7 +51,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
 
       // Draw user name at the bottom left area (below the geometric pattern)
       const displayName = userName || "YOUR NAME";
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = textColor;
       ctx.font = 'normal 48px "Geist Mono", monospace';
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
@@ -81,7 +87,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
 
       // Draw user name at the bottom left area (below the geometric pattern)
       const displayName = userName || "YOUR NAME";
-      fullCtx.fillStyle = "#ffffff";
+      fullCtx.fillStyle = textColor;
       fullCtx.font = 'normal 48px "Geist Mono", monospace';
       fullCtx.textAlign = "right";
       fullCtx.textBaseline = "middle";

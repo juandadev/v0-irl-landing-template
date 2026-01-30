@@ -9,7 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import CardTemplate, { type CardTemplateRef } from "@/components/card-template";
+import CardTemplate, { type CardTemplateRef, type CardVariant } from "@/components/card-template";
 import { Download } from "lucide-react";
 
 const MAX_CHARACTERS = 20;
@@ -27,6 +27,7 @@ export default function LanyardWithControls({
 }: LanyardWithControlsProps) {
   const [inputValue, setInputValue] = useState(defaultName);
   const [appliedName, setAppliedName] = useState(defaultName);
+  const [cardVariant, setCardVariant] = useState<CardVariant>("dark");
   const [cardTextureUrl, setCardTextureUrl] = useState<string | undefined>(undefined);
   const [textureKey, setTextureKey] = useState(0);
   const cardTemplateRef = useRef<CardTemplateRef>(null);
@@ -72,6 +73,7 @@ export default function LanyardWithControls({
       <CardTemplate
         ref={cardTemplateRef}
         userName={inputValue}
+        variant={cardVariant}
         onTextureReady={handleTextureReady}
       />
       <Lanyard
@@ -83,12 +85,55 @@ export default function LanyardWithControls({
       />
       <div className="px-6 pb-8 lg:absolute lg:bottom-8 lg:right-6 lg:w-auto lg:px-0">
         <div className="mx-auto max-w-md lg:mx-0 lg:ml-auto">
-          <label
-            htmlFor="userName"
-            className="mb-2 block text-sm font-medium text-muted-foreground"
-          >
-            Personalize your card
-          </label>
+          <div className="mb-4 flex items-center justify-between">
+            <label className="text-sm font-medium text-muted-foreground">
+              Personalize your card
+            </label>
+            <div className="flex items-center gap-3">
+              <label className="flex cursor-pointer items-center gap-1.5">
+                <input
+                  type="radio"
+                  name="cardVariant"
+                  value="dark"
+                  checked={cardVariant === "dark"}
+                  onChange={() => setCardVariant("dark")}
+                  className="sr-only"
+                />
+                <span
+                  className={`flex h-6 w-6 items-center justify-center rounded-full border-2 bg-black transition-all ${
+                    cardVariant === "dark"
+                      ? "border-primary ring-2 ring-primary/30"
+                      : "border-border"
+                  }`}
+                >
+                  {cardVariant === "dark" && (
+                    <span className="h-2 w-2 rounded-full bg-white" />
+                  )}
+                </span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-1.5">
+                <input
+                  type="radio"
+                  name="cardVariant"
+                  value="light"
+                  checked={cardVariant === "light"}
+                  onChange={() => setCardVariant("light")}
+                  className="sr-only"
+                />
+                <span
+                  className={`flex h-6 w-6 items-center justify-center rounded-full border-2 bg-white transition-all ${
+                    cardVariant === "light"
+                      ? "border-primary ring-2 ring-primary/30"
+                      : "border-border"
+                  }`}
+                >
+                  {cardVariant === "light" && (
+                    <span className="h-2 w-2 rounded-full bg-black" />
+                  )}
+                </span>
+              </label>
+            </div>
+          </div>
           <div className="flex gap-2">
             <div className="relative flex-1">
               <input
