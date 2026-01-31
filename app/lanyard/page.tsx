@@ -58,9 +58,18 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     ? `${userName} is attending v0 IRL ${EVENT_CITY} - ${EVENT_DATE}. Join us for Prompt to Production!`
     : `Create and customize your personalized v0 IRL ${EVENT_CITY} event lanyard. Choose your color variant and download it as a high-resolution PNG.`;
 
-  const ogUrl = encrypted 
+  const pageUrl = encrypted 
     ? `${SITE_URL}/lanyard?u=${encrypted}`
     : `${SITE_URL}/lanyard`;
+
+  // OG Image URLs - different formats for different platforms
+  const ogImageUrl = encrypted
+    ? `${SITE_URL}/api/og?u=${encrypted}&format=og`
+    : `${SITE_URL}/api/og?format=og`;
+  
+  const twitterImageUrl = encrypted
+    ? `${SITE_URL}/api/og?u=${encrypted}&format=twitter`
+    : `${SITE_URL}/api/og?format=twitter`;
 
   return {
     title,
@@ -68,21 +77,25 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     openGraph: {
       title,
       description,
-      url: ogUrl,
+      url: pageUrl,
       siteName: `v0 IRL ${EVENT_CITY}`,
       type: "website",
       locale: "en_US",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${userName} - v0 IRL ${EVENT_CITY}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: "@v0",
-    },
-    other: {
-      // LinkedIn specific
-      "og:image:width": "1200",
-      "og:image:height": "630",
+      images: [twitterImageUrl],
     },
   };
 }
