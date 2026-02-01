@@ -42,11 +42,7 @@ export default function FooterSection() {
                         </Link>
                     ))}
                 </div>
-                <span className="text-muted-foreground block text-center text-sm font-mono">Built with v0, <Link
-                    href="https://tailark.com/"
-                    className="text-foreground underline">Tailark</Link> & <Link
-                    href="https://reactbits.dev/"
-                    className="text-foreground underline">React Bits</Link> • Powered by Vercel.</span>
+                <span className="text-muted-foreground block text-center text-sm font-mono">Built with v0 • Powered by Vercel.</span>
             </div>
         </footer>
     )

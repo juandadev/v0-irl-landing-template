@@ -22,7 +22,7 @@ export default function HeroSection() {
                         <div className="mx-auto max-w-2xl text-center lg:ml-0 lg:text-left">
                             <div className='mt-8 lg:mt-16'>
                                 <DecryptedText
-                                    text="Thursday February 5th, 2026 - New York City"
+                                    text="Friday February 7th, 2026 - Addis Ababa"
                                     animateOn="view"
                                     revealDirection="start"
                                     sequential

@@ -36,31 +36,31 @@ export default function Agenda() {
                     >
                         <div className="pb-6">
                             <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>11:00</span>
+                                <span className='text-muted-foreground font-mono '>2:00 PM</span>
                                 <span>Welcome Video</span>
                             </div>
                             <p className="text-muted-foreground mt-4">A special welcome from the v0 Team</p>
                         </div>
                         <div className="py-6">
                             <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>11:30</span>
+                                <span className='text-muted-foreground font-mono '>2:30 PM</span>
                                 <span>Build Time!</span>
                             </div>
                             <p className="text-muted-foreground mt-4">Hands on to build your project with v0.</p>
                         </div>
                         <div className="py-6">
                             <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>13:00</span>
+                                <span className='text-muted-foreground font-mono '>3:15 PM</span>
                                 <span>Showcase Sprint</span>
                             </div>
                             <p className="text-muted-foreground mt-4">Show a quick presentation of what you built.</p>
                         </div>
                         <div className="py-6">
                             <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>13:30</span>
+                                <span className='text-muted-foreground font-mono '>3:45 PM</span>
                                 <span>Networking and Event Close</span>
                             </div>
-                            <p className="text-muted-foreground mt-4">Take some time to interact with other and share
+                            <p className="text-muted-foreground mt-4">Take some time to interact with others and share
                                 ideas.</p>
                         </div>
                     </AnimatedGroup>

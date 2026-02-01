@@ -16,7 +16,7 @@ export default function Features() {
                         speedSegment={0.3}
                         as="h2"
                         className="text-balance text-4xl font-semibold lg:text-5xl">
-                        Join us for NYC's first official v0 IRL event
+                        Join us for Addis Ababa's first official v0 IRL event
                     </TextEffect>
                 </div>
                 <AnimatedGroup
