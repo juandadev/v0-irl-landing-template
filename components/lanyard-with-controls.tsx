@@ -306,7 +306,7 @@ export default function LanyardWithControls({
           {/* Share buttons - only visible when a name has been applied */}
           {appliedName && (
             <div className="mt-4 flex items-center gap-2">
-              <span className="text-sm font-medium text-muted-foreground p-1 bg-background">
+              <span className="text-sm font-medium text-muted-foreground px-2 py-1 backdrop-blur-md bg-white/10 rounded-md">
                 Share:
               </span>
               <TooltipProvider delayDuration={200}>
