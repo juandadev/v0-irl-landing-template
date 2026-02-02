@@ -98,8 +98,8 @@ export default function LanyardWithControls({
 
   // Share message templates
   const shareMessage = appliedName
-    ? `I'll be at @v0 Prompt to Production Guadalajara! Check out my personalized lanyard`
-    : `Check out v0 IRL Guadalajara! Create your personalized event lanyard`;
+    ? `I'm at @v0 Prompt to Production San Diego! Check out my personalized lanyard`
+    : `Check out v0 IRL San Diego! Create your personalized event lanyard`;
 
   const handleShareX = useCallback(() => {
     const url = getShareableUrl();
@@ -186,8 +186,8 @@ export default function LanyardWithControls({
         userName={inputValue}
         variant={cardVariant}
         onTextureReady={handleTextureReady}
-        city='guadalajara'
-        date='05.02.2026'
+        city='san diego'
+        date='02.07.2026'
       />
       <Lanyard
         key={textureKey}
@@ -199,7 +199,7 @@ export default function LanyardWithControls({
       <div className="px-6 pb-8 lg:absolute lg:bottom-8 lg:right-6 lg:w-auto lg:px-0">
         <div className="mx-auto max-w-md lg:mx-0 lg:ml-auto">
           <div className="mb-4 flex items-center justify-between">
-            <label className="text-sm font-medium text-muted-foreground p-1 bg-background">
+            <label className="text-sm font-medium text-muted-foreground p-1">
               Personalize your card
             </label>
             <div className="flex items-center gap-3">

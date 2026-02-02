@@ -20,7 +20,7 @@ export const HeroHeader = () => {
                                 aria-label="home"
                                 className="flex items-center space-x-2">
                                 <V0Icon size={30} className='text-foreground'/>
-                                <span className='font-mono'>IRL - NYC</span>
+                                <span className='font-mono'>IRL - SD</span>
                             </Link>
 
                             <button

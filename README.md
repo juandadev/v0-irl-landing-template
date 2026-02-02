@@ -111,8 +111,8 @@ The lanyard displays dynamic city and date text. Update these in `components/lan
     userName={inputValue}
     variant={cardVariant}
     onTextureReady={handleTextureReady}
-    city='guadalajara'    // <-- Change to your city
-    date='05.02.2026'     // <-- Change to your event date (DD.MM.YYYY format)
+    city='San Diego'    // <-- Change to your city
+    date='02.07.2026'     // <-- Change to your event date (DD.MM.YYYY format)
 />
 ```
 
@@ -122,8 +122,8 @@ Update the share message for social media (around line 113):
 
 ```tsx
 const shareMessage = appliedName
-    ? `I'll be at @v0 Prompt to Production Guadalajara! Check out my personalized lanyard`  // <-- Change this
-    : `Check out v0 IRL Guadalajara! Create your personalized event lanyard`;  // <-- And this
+    ? `I'm at @v0 Prompt to Production San Diego! Check out my personalized lanyard`  // <-- Change this
+    : `Check out v0 IRL San Diego! Create your personalized event lanyard`;  // <-- And this
 ```
 
 #### Export Filename (`components/card-template.tsx`)
@@ -131,7 +131,7 @@ const shareMessage = appliedName
 Update the downloaded file name (around line 159):
 
 ```tsx
-link.download = `v0-guadalajara-${userName || "card"}.png`;  // <-- Change "guadalajara" to your city
+link.download = `v0-sd-${userName || "card"}.png`;  // <-- Change "guadalajara" to your city
 ```
 
 #### OG Images for Social Media (`app/api/og/route.tsx`)
@@ -139,7 +139,7 @@ link.download = `v0-guadalajara-${userName || "card"}.png`;  // <-- Change "guad
 When someone shares a personalized lanyard, dynamic Open Graph images are generated. Update the event details (around lines 57-58):
 
 ```tsx
-const EVENT_CITY = "GUADALAJARA";  // <-- Change to your city (uppercase)
+const EVENT_CITY = "SAN DIEGO";  // <-- Change to your city (uppercase)
 const EVENT_DATE = "FEBRUARY 2026";  // <-- Change to your event date
 ```
 
@@ -198,7 +198,7 @@ Update the site metadata (around line 14):
 
 ```tsx
 export const metadata: Metadata = {
-    title: 'v0 IRL — Prompt to Production | NYC February 5th, 2026',  // <-- Page title
+    title: 'v0 IRL — Prompt to Production | SD February 7th, 2026',  // <-- Page title
     description: 'v0 is launching its biggest product update yet...',  // <-- Meta description
     generator: 'v0.app',
 }

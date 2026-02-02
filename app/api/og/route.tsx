@@ -54,8 +54,8 @@ export async function GET(request: Request) {
   try {
 
       // Event details - you can edit these
-      const EVENT_CITY = "guadalajara";
-      const EVENT_DATE = "jueves 5 de febrero";
+      const EVENT_CITY = "san diego";
+      const EVENT_DATE = "feburary 7th, 2025";
       const TITLE = 'Prompt to Production'
 
     const { searchParams } = new URL(request.url);
