@@ -77,8 +77,7 @@ export default function HeroSection() {
                                                 <Button
                                                     asChild
                                                     size="lg"
-                                                    className="px-5 text-base opacity-70 pointer-events-none"
-                                                    disabled
+                                                    className="px-5 text-base opacity-70"
                                                 >
                                                     <span className="text-nowrap">Count Me In</span>
                                                 </Button>

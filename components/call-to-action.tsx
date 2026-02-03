@@ -3,6 +3,8 @@ import Link from 'next/link'
 import {TextEffect} from "./motion-primitives/text-effect"
 import {AnimatedGroup} from "@/components/motion-primitives/animated-group";
 import {transitionVariants} from "@/lib/utils";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import React from "react";
 
 export default function CallToAction() {
     return (
@@ -15,7 +17,7 @@ export default function CallToAction() {
                         speedSegment={0.3}
                         as="h2"
                         className="text-balance text-4xl font-semibold lg:text-5xl">
-                        Don't miss a spot!
+                        Don't Miss the v0 Guadalajara Meetup!
                     </TextEffect>
                     <TextEffect
                         triggerOnView
@@ -24,7 +26,8 @@ export default function CallToAction() {
                         delay={0.3}
                         as="p"
                         className="mt-4 text-muted-foreground">
-                        We have limited availability, register now in the link below.
+                        Join us for an evening of AI, code, and networking. Have questions about the venue or agenda?
+                        Feel free to reach out.
                     </TextEffect>
                     <AnimatedGroup
                         triggerOnView
@@ -41,20 +44,28 @@ export default function CallToAction() {
                         }}
                         className="mt-12 flex flex-wrap justify-center gap-4"
                     >
-                        <Button
-                            asChild
-                            size="lg">
-                            <Link href="#">
-                                <span>Register</span>
-                            </Link>
-                        </Button>
-
+                        <TooltipProvider delayDuration={200}>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        className='opacity-70'
+                                    >
+                                        <span>RSVP for Free</span>
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Sold Out!</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
                         <Button
                             asChild
                             size="lg"
                             variant="outline">
-                            <Link href="#">
-                                <span>Contact the Host</span>
+                            <Link href="mailto:juanda.martinezn@gmail.com">
+                                <span>Ask a Question</span>
                             </Link>
                         </Button>
                     </AnimatedGroup>
