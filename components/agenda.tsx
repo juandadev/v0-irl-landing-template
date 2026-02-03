@@ -3,6 +3,34 @@ import React from "react";
 import {transitionVariants} from "@/lib/utils";
 import {AnimatedGroup} from "@/components/motion-primitives/animated-group";
 
+const AGENDA_ITEMS = [
+    {
+        time: "6:00 PM",
+        title: "Check-in & Networking",
+        description: "Registration opens. Grab your badge, meet fellow builders, and get settled in."
+    },
+    {
+        time: "6:30 PM",
+        title: "Kickoff & v0 Live Demo",
+        description: "Welcome remarks followed by a live demonstration of v0's generative UI capabilities."
+    },
+    {
+        time: "6:50 PM",
+        title: "Build Time!",
+        description: "Hands-on session. Turn your prompts into production-ready apps. (Don't forget to post your progress!)"
+    },
+    {
+        time: "8:15 PM",
+        title: "Showcase Sprint",
+        description: "Lightning round demos. A quick look at what the community managed to ship in just over an hour."
+    },
+    {
+        time: "8:45 PM",
+        title: "Group Photo & Closing",
+        description: "Capturing the moment with the community before we wrap up the night."
+    }
+];
+
 export default function Agenda() {
     return (
         <section className="scroll-py-16 py-16 md:scroll-py-32 md:py-32">
@@ -18,7 +46,6 @@ export default function Agenda() {
                             Agenda
                         </TextEffect>
                     </div>
-
                     <AnimatedGroup
                         triggerOnView
                         variants={{
@@ -32,37 +59,17 @@ export default function Agenda() {
                             },
                             ...transitionVariants,
                         }}
-                        className="divide-y divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0"
+                        className="divide-y space-y-4 divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0"
                     >
-                        <div className="pb-6">
-                            <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>11:00</span>
-                                <span>Welcome Video</span>
+                        {AGENDA_ITEMS.map((item, index) => (
+                            <div key={`agenda-${index}`} className="pb-2">
+                                <div className="font-medium space-x-2">
+                                    <span className='text-muted-foreground font-mono '>{item.time}</span>
+                                    <span>- {item.title}</span>
+                                </div>
+                                <p className="text-muted-foreground mt-4">{item.description}</p>
                             </div>
-                            <p className="text-muted-foreground mt-4">A special welcome from the v0 Team</p>
-                        </div>
-                        <div className="py-6">
-                            <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>11:30</span>
-                                <span>Build Time!</span>
-                            </div>
-                            <p className="text-muted-foreground mt-4">Hands on to build your project with v0.</p>
-                        </div>
-                        <div className="py-6">
-                            <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>13:00</span>
-                                <span>Showcase Sprint</span>
-                            </div>
-                            <p className="text-muted-foreground mt-4">Show a quick presentation of what you built.</p>
-                        </div>
-                        <div className="py-6">
-                            <div className="font-medium space-x-2">
-                                <span className='text-muted-foreground font-mono '>13:30</span>
-                                <span>Networking and Event Close</span>
-                            </div>
-                            <p className="text-muted-foreground mt-4">Take some time to interact with other and share
-                                ideas.</p>
-                        </div>
+                        ))}
                     </AnimatedGroup>
                 </div>
             </div>
