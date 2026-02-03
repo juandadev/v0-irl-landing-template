@@ -1,9 +1,49 @@
 import {Card, CardContent, CardHeader} from '@/components/ui/card'
-import {CircleDollarSignIcon, EarthIcon, UsersIcon} from 'lucide-react'
+import {
+    CheckCircleIcon,
+    CircleDollarSignIcon,
+    NetworkIcon,
+    Share2Icon,
+    TrophyIcon,
+    UsersIcon
+} from 'lucide-react'
 import React, {ReactNode} from 'react'
 import {TextEffect} from "@/components/motion-primitives/text-effect";
 import {transitionVariants} from "@/lib/utils";
 import {AnimatedGroup} from "@/components/motion-primitives/animated-group";
+
+const FEATURES_LIST = [
+    {
+        icon: CircleDollarSignIcon,
+        title: "$10 Free v0 Credits",
+        description: "Every attendee gets $10 in credits to power their builds and explore the full potential of generative UI."
+    },
+    {
+        icon: Share2Icon,
+        title: "Showcase Your Work",
+        description: "Build in public! Share your progress on X or LinkedIn to build your brand and show off your speed."
+    },
+    {
+        icon: CheckCircleIcon,
+        title: "Official Submission",
+        description: "Submit your final production link along with proof of your social post to enter the community challenge."
+    },
+    {
+        icon: UsersIcon,
+        title: "Community Voting",
+        description: "It’s not just about us—the community decides the best builds. Get your peers to vote for your creation."
+    },
+    {
+        icon: TrophyIcon,
+        title: "Winner Announcement",
+        description: "Glory awaits. We’ll announce the top-voted builders and crown the champions the week of Feb 10th."
+    },
+    {
+        icon: NetworkIcon,
+        title: "Elite Networking",
+        description: "Connect with builders across Design, Engineering, Product, and Marketing in a high-energy environment."
+    },
+]
 
 export default function Features() {
     return (
@@ -16,7 +56,16 @@ export default function Features() {
                         speedSegment={0.3}
                         as="h2"
                         className="text-balance text-4xl font-semibold lg:text-5xl">
-                        Join us for NYC's first official v0 IRL event
+                        Everything You Need to Build
+                    </TextEffect>
+                    <TextEffect
+                        triggerOnView
+                        preset="fade-in-blur"
+                        speedSegment={0.3}
+                        as="p"
+                        className="mt-4">
+                        We’re providing the tools, the platform, and the community. You just bring the
+                        prompts.
                     </TextEffect>
                 </div>
                 <AnimatedGroup
@@ -34,61 +83,24 @@ export default function Features() {
                     }}
                 >
                     <Card
-                        className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16">
-                        <div className="group shadow-zinc-950/5">
-                            <CardHeader className="pb-3">
-                                <CardDecorator>
-                                    <CircleDollarSignIcon
-                                        className="size-6"
-                                        aria-hidden
-                                    />
-                                </CardDecorator>
-
-                                <h3 className="mt-6 font-medium text-xl">Free v0 Credits</h3>
-                            </CardHeader>
-
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground">Credits to use towards building with
-                                    v0.</p>
-                            </CardContent>
-                        </div>
-
-                        <div className="group shadow-zinc-950/5">
-                            <CardHeader className="pb-3">
-                                <CardDecorator>
-                                    <EarthIcon
-                                        className="size-6"
-                                        aria-hidden
-                                    />
-                                </CardDecorator>
-
-                                <h3 className="mt-6 font-medium text-xl">Global Gallery</h3>
-                            </CardHeader>
-
-                            <CardContent>
-                                <p className="mt-3 text-sm text-muted-foreground">Every project showcased in a worldwide
-                                    exhibition</p>
-                            </CardContent>
-                        </div>
-
-                        <div className="group shadow-zinc-950/5">
-                            <CardHeader className="pb-3">
-                                <CardDecorator>
-                                    <UsersIcon
-                                        className="size-6"
-                                        aria-hidden
-                                    />
-                                </CardDecorator>
-
-                                <h3 className="mt-6 font-medium text-xl">Community Voting</h3>
-                            </CardHeader>
-
-                            <CardContent>
-                                <p className="mt-3 text-sm text-muted-foreground">Builders vote for favorites, winners
-                                    get
-                                    prizes</p>
-                            </CardContent>
-                        </div>
+                        className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16"
+                    >
+                        {FEATURES_LIST.map((feature, index) => (
+                            <div key={`feature-${index}`} className="group shadow-zinc-950/5">
+                                <CardHeader className="pb-3">
+                                    <CardDecorator>
+                                        <feature.icon
+                                            className="size-6"
+                                            aria-hidden
+                                        />
+                                    </CardDecorator>
+                                    <h3 className="mt-6 font-medium text-xl">{feature.title}</h3>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                                </CardContent>
+                            </div>
+                        ))}
                     </Card>
                 </AnimatedGroup>
             </div>
