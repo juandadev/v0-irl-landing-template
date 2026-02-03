@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
-import {useEffect, useRef, useState} from 'react';
+import {Suspense, useEffect, useRef, useState} from 'react';
 import {Canvas, extend, useFrame} from '@react-three/fiber';
 import {useGLTF, useTexture, Environment, Lightformer} from '@react-three/drei';
 import {
@@ -60,40 +60,42 @@ export default function Lanyard({
                 gl={{alpha: transparent, preserveDrawingBuffer: true}}
                 onCreated={({gl}) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
             >
-                <ambientLight intensity={Math.PI}/>
-                <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-                    <Band isMobile={isMobile} cardTextureUrl={cardTextureUrl}/>
-                </Physics>
-                <Environment blur={0.75}>
-                    <Lightformer
-                        intensity={2}
-                        color="white"
-                        position={[0, -1, 5]}
-                        rotation={[0, 0, Math.PI / 3]}
-                        scale={[100, 0.1, 1]}
-                    />
-                    <Lightformer
-                        intensity={3}
-                        color="white"
-                        position={[-1, -1, 1]}
-                        rotation={[0, 0, Math.PI / 3]}
-                        scale={[100, 0.1, 1]}
-                    />
-                    <Lightformer
-                        intensity={3}
-                        color="white"
-                        position={[1, 1, 1]}
-                        rotation={[0, 0, Math.PI / 3]}
-                        scale={[100, 0.1, 1]}
-                    />
-                    <Lightformer
-                        intensity={10}
-                        color="white"
-                        position={[-10, 0, 14]}
-                        rotation={[0, Math.PI / 2, Math.PI / 3]}
-                        scale={[100, 10, 1]}
-                    />
-                </Environment>
+                <Suspense fallback={null}>
+                    <ambientLight intensity={Math.PI}/>
+                    <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+                        <Band isMobile={isMobile} cardTextureUrl={cardTextureUrl}/>
+                    </Physics>
+                    <Environment blur={0.75}>
+                        <Lightformer
+                            intensity={2}
+                            color="white"
+                            position={[0, -1, 5]}
+                            rotation={[0, 0, Math.PI / 3]}
+                            scale={[100, 0.1, 1]}
+                        />
+                        <Lightformer
+                            intensity={3}
+                            color="white"
+                            position={[-1, -1, 1]}
+                            rotation={[0, 0, Math.PI / 3]}
+                            scale={[100, 0.1, 1]}
+                        />
+                        <Lightformer
+                            intensity={3}
+                            color="white"
+                            position={[1, 1, 1]}
+                            rotation={[0, 0, Math.PI / 3]}
+                            scale={[100, 0.1, 1]}
+                        />
+                        <Lightformer
+                            intensity={10}
+                            color="white"
+                            position={[-10, 0, 14]}
+                            rotation={[0, Math.PI / 2, Math.PI / 3]}
+                            scale={[100, 10, 1]}
+                        />
+                    </Environment>
+                </Suspense>
             </Canvas>
         </div>
     );
