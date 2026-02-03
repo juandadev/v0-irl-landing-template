@@ -11,6 +11,7 @@ import GlobantLogoIcon from "@/components/icons/globant-logo-icon";
 import DecryptedText from "@/components/DecryptedText";
 import {transitionVariants} from "@/lib/utils";
 import LanyardWithControls from "@/components/lanyard-with-controls";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 export default function HeroSection() {
     return (
@@ -22,7 +23,7 @@ export default function HeroSection() {
                         <div className="mx-auto max-w-2xl text-center lg:ml-0 lg:text-left">
                             <div className='mt-8 lg:mt-16'>
                                 <DecryptedText
-                                    text="Thursday February 5th, 2026 - New York City"
+                                    text="Thursday, February 5th • 6:00 PM • Guadalajara"
                                     animateOn="view"
                                     revealDirection="start"
                                     sequential
@@ -52,8 +53,8 @@ export default function HeroSection() {
                                 delay={0.5}
                                 as="p"
                                 className="mt-8 max-w-2xl text-pretty text-lg text-muted-foreground bg-black p-1 rounded-md">
-                                v0 is getting ready to launch its biggest product update yet. We're celebrating with
-                                v0 IRLs around the world.
+                                A v0 event for those who prefer building over talking. Bring your laptop; we’re going
+                                from a single prompt to a production-ready app in one evening.
                             </TextEffect>
                             <AnimatedGroup
                                 variants={{
@@ -69,31 +70,42 @@ export default function HeroSection() {
                                 }}
                                 className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
                             >
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    className="px-5 text-base">
-                                    <Link href="#link">
-                                        <span className="text-nowrap">Register Now</span>
-                                    </Link>
-                                </Button>
+                                <TooltipProvider delayDuration={200}>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <div className='bg-background'>
+                                                <Button
+                                                    asChild
+                                                    size="lg"
+                                                    className="px-5 text-base opacity-70 pointer-events-none"
+                                                    disabled
+                                                >
+                                                    <span className="text-nowrap">Count Me In</span>
+                                                </Button>
+                                            </div>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Sold Out!</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                                 <Button
                                     key={2}
                                     asChild
                                     size="lg"
                                     variant="ghost"
                                     className="px-5 text-base bg-black/30 backdrop-blur-sm hover:bg-black/40">
-                                    <Link href="#link">
-                                        <span className="text-nowrap">Contact Host</span>
+                                    <Link href="https://juanda.dev">
+                                        <span className="text-nowrap">Contact Organizer</span>
                                     </Link>
                                 </Button>
                             </AnimatedGroup>
                         </div>
                     </div>
-                    <LanyardWithControls 
-                             position={[0, 0, 20]}
-                             containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen bg-radial lg:from-transparent lg:to-transparent from-muted to-background select-none'
-                             defaultName=""/>
+                    <LanyardWithControls
+                        position={[0, 0, 20]}
+                        containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen bg-radial lg:from-transparent lg:to-transparent from-muted to-background select-none'
+                        defaultName=""/>
                 </div>
             </section>
             <section className="bg-background pb-16 md:pb-32">

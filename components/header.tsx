@@ -18,9 +18,9 @@ export const HeroHeader = () => {
                             <Link
                                 href="/"
                                 aria-label="home"
-                                className="flex items-center space-x-2">
-                                <V0Icon size={30} className='text-foreground'/>
-                                <span className='font-mono'>IRL - NYC</span>
+                                className="flex items-end space-x-2">
+                                <V0Icon size={27} className='text-foreground'/>
+                                <span className='font-mono'>IRL - GDL 🇲🇽</span>
                             </Link>
 
                             <button
