@@ -98,8 +98,8 @@ export default function LanyardWithControls({
 
   // Share message templates
   const shareMessage = appliedName
-    ? `I'll be at @v0 Prompt to Production Guadalajara! Check out my personalized lanyard`
-    : `Check out v0 IRL Guadalajara! Create your personalized event lanyard`;
+    ? `I'll be at @v0 Prompt to Production New York City! Check out my personalized lanyard`
+    : `Check out v0 IRL New York City! Create your personalized event lanyard`;
 
   const handleShareX = useCallback(() => {
     const url = getShareableUrl();
@@ -186,7 +186,7 @@ export default function LanyardWithControls({
         userName={inputValue}
         variant={cardVariant}
         onTextureReady={handleTextureReady}
-        city='guadalajara'
+        city='new york'
         date='05.02.2026'
       />
       <Lanyard
