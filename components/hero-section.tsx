@@ -1,15 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
-import {Button} from '@/components/ui/button'
-import {InfiniteSlider} from '@/components/ui/infinite-slider'
-import {ProgressiveBlur} from '@/components/ui/progressive-blur'
-import {TextEffect} from "@/components/motion-primitives/text-effect";
-import {AnimatedGroup} from "@/components/motion-primitives/animated-group";
+import { Button } from '@/components/ui/button'
+import { InfiniteSlider } from '@/components/ui/infinite-slider'
+import { ProgressiveBlur } from '@/components/ui/progressive-blur'
+import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import V0Icon from "@/components/icons/v0-icon";
 import VercelWordmarkIcon from "@/components/icons/vercel-wordmark-icon";
 import GlobantLogoIcon from "@/components/icons/globant-logo-icon";
 import DecryptedText from "@/components/DecryptedText";
-import {transitionVariants} from "@/lib/utils";
+import { transitionVariants } from "@/lib/utils";
 import LanyardWithControls from "@/components/lanyard-with-controls";
 
 export default function HeroSection() {
@@ -35,15 +35,15 @@ export default function HeroSection() {
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="max-w-2xl text-balance text-6xl font-medium md:text-7xl xl:text-8xl">
-                                Prompt
+                                className="max-w-2xl text-balance text-6xl font-semibold md:text-7xl xl:text-8xl">
+                                Prompt to
                             </TextEffect>
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="max-w-2xl text-balance text-6xl font-medium md:text-7xl xl:text-8xl">
-                                to Production
+                                className="max-w-2xl text-balance text-6xl font-semibold md:text-7xl xl:text-8xl">
+                                Production
                             </TextEffect>
                             <TextEffect
                                 per="line"
@@ -90,10 +90,10 @@ export default function HeroSection() {
                             </AnimatedGroup>
                         </div>
                     </div>
-                    <LanyardWithControls 
-                             position={[0, 0, 20]}
-                             containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen bg-radial lg:from-transparent lg:to-transparent from-muted to-background select-none'
-                             defaultName=""/>
+                    <LanyardWithControls
+                        position={[0, 0, 20]}
+                        containerClassName='lg:absolute lg:top-0 lg:right-0 lg:w-1/2 relative w-full h-screen bg-radial lg:from-transparent lg:to-transparent from-muted to-background select-none'
+                        defaultName="" />
                 </div>
             </section>
             <section className="bg-background pb-16 md:pb-32">
@@ -122,15 +122,15 @@ export default function HeroSection() {
                                 speed={40}
                                 gap={112}>
                                 <div className="flex items-center">
-                                    <V0Icon size={35} aria-label="v0 Logo" className='text-foreground mx-auto'/>
+                                    <V0Icon size={35} aria-label="v0 Logo" className='text-foreground mx-auto' />
                                 </div>
                                 <div className="flex items-center">
                                     <VercelWordmarkIcon size={20} aria-label="Vercel Logo"
-                                                        className='text-foreground mx-auto'/>
+                                        className='text-foreground mx-auto' />
                                 </div>
                                 <div className="flex items-center">
                                     <GlobantLogoIcon size={20} aria-label="Globant Logo"
-                                                     className='text-foreground mx-auto'/>
+                                        className='text-foreground mx-auto' />
                                 </div>
                             </InfiniteSlider>
                             <div
