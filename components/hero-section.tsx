@@ -35,14 +35,14 @@ export default function HeroSection() {
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="max-w-2xl text-balance text-6xl font-bold md:text-7xl xl:text-8xl">
+                                className="max-w-2xl text-balance text-6xl font-semibold md:text-7xl xl:text-8xl">
                                 Prompt to
                             </TextEffect>
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="max-w-2xl text-balance text-6xl font-bold md:text-7xl xl:text-8xl">
+                                className="max-w-2xl text-balance text-6xl font-semibold md:text-7xl xl:text-8xl">
                                 Production
                             </TextEffect>
                             <TextEffect
